@@ -1,3 +1,4 @@
+workspace = { members = ["diesel_demo"] }
 [package]
 name = "api-deployment-example"
 version = "0.1.0"
