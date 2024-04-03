@@ -5,7 +5,6 @@ use axum::{
     Extension, Json, Router,
 };
 
-use dotenvy::dotenv;
 
 use serde::{Deserialize, Serialize};
 use sqlx::postgres::PgPoolOptions;
@@ -63,8 +62,7 @@ async fn handler() -> &'static str {
 async fn get_users(state: Extension<Pool<Postgres>>) -> Json<Vec<User>> {
     let Extension(pool) = state;
 
-    let records = sqlx::query!("SELECT * FROM users")
-        .fetch_all(&pool)
+    let records = sqlx::query!("SELECT * FROM users")        .fetch_all(&pool)
         .await
         .expect("failed to fetch users");
 
